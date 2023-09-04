@@ -1,5 +1,6 @@
 package com.example.mipexfr;
 
+import com.sun.tools.javac.Main;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -21,7 +22,7 @@ public class AccessingDataJpaApplication{
         //SpringApplication.run(AccessingDataJpaApplication.class);
         ConfigurableApplicationContext context = new SpringApplicationBuilder(AccessingDataJpaApplication.class).headless(false).run(args);
         SwingUtilities.invokeLater(()->{
-            JFrame MMenu = context.getBean(MainMenu.class);
+            JFrame MMenu = context.getBean(MainMenuUI.class);
             MMenu.setVisible(true);
         });
     }

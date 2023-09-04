@@ -17,8 +17,14 @@ public class AppUser {
     public AppUser(String username, String password) {
         this.username = username;
         this.password = password;
+        this.isAdmin = false;
     }
 
+    public AppUser(String username, String password, boolean isAdmin) {
+        this.username = username;
+        this.password = password;
+        this.isAdmin = isAdmin;
+    }
     @Override
     public String toString() {
         return String.format("User[id=%d, username=%s, passwd=%s]", id, username, password);
