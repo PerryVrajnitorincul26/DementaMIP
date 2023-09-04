@@ -9,6 +9,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 
+import javax.management.remote.JMXConnectorFactory;
 import javax.swing.*;
 
 @SpringBootApplication
@@ -20,8 +21,7 @@ public class AccessingDataJpaApplication{
         //SpringApplication.run(AccessingDataJpaApplication.class);
         ConfigurableApplicationContext context = new SpringApplicationBuilder(AccessingDataJpaApplication.class).headless(false).run(args);
         SwingUtilities.invokeLater(()->{
-            JFrame MMenu = context.getBean(JFrame.class);
-            MMenu.add(new JButton("extraordinar"));
+            JFrame MMenu = context.getBean(MainMenu.class);
             MMenu.setVisible(true);
         });
     }
