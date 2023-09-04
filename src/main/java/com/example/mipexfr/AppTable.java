@@ -8,17 +8,23 @@ import jakarta.persistence.*;
 public class AppTable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private long tableId;
 
     private int seats;
 
     private int customers;
 
-    private long userId;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn (name="app_user", referencedColumnName="id",nullable=false,unique=true)
+    @JoinColumn (name="app_user", referencedColumnName="id",nullable=false)
     private AppUser app_user;
+
+    protected AppTable() {
+    }
+    public AppTable(int seats, int customers, AppUser app_user) {
+        this.seats = seats;
+        this.customers = customers;
+        this.app_user = app_user;
+    }
 
     public long getTableId() {
         return tableId;
@@ -44,15 +50,6 @@ public class AppTable {
 
     public void setCustomers(int customers) {
         this.customers = customers;
-
-    }
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
 
     }
 }

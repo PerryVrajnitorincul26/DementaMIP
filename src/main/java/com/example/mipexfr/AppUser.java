@@ -19,6 +19,12 @@ public class AppUser {
         this.password = password;
     }
 
+    public AppUser(String username, String password, boolean isAdmin) {
+        this.username = username;
+        this.password = password;
+        this.isAdmin = isAdmin;
+    }
+
     @OneToMany(mappedBy = "app_user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<AppTable> tables ;
 

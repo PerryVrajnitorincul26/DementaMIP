@@ -8,13 +8,18 @@ public class ProductStockTestBean {
 
     private final AppProductRepo productRepo;
     private final AppStockRepo stockRepo;
+    private final AppTableRepo tableRepo;
+    private final AppUserRepo userRepo;
 
     @Autowired
-    public ProductStockTestBean(AppProductRepo productRepo, AppStockRepo stockRepo) {
+    public ProductStockTestBean(AppProductRepo productRepo, AppStockRepo stockRepo, AppTableRepo tableRepo, AppUserRepo userRepo) {
         this.productRepo = productRepo;
         this.stockRepo = stockRepo;
-        testAddProductAndStock();
-        testRemoveProductAndStock();
+        this.tableRepo = tableRepo;
+        this.userRepo = userRepo;
+        //testAddProductAndStock();
+        //testRemoveProductAndStock();
+        testAddRemoveTable();
     }
 
     public void testAddProductAndStock() {
@@ -43,5 +48,14 @@ public class ProductStockTestBean {
         } else {
             System.out.println("Product not found.");
         }
+    }
+
+    public void testAddRemoveTable(){
+        userRepo.save(new AppUser("matei","servus",true));
+        AppUser AppUser = userRepo.findByUsername("matei").get(0);
+        var tTable=new AppTable(10, 10, AppUser);
+        tableRepo.save(tTable);
+        tableRepo.save(new AppTable(12,13,AppUser));
+        tableRepo.delete(tTable);
     }
 }

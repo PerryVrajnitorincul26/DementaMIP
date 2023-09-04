@@ -17,25 +17,21 @@ public class AppSale {
     @JoinColumn(name = "product_id")
     private AppProduct product;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "app_product_id")
-    private AppProduct appProduct;
 
     protected AppSale() {}
 
-    public AppSale(int quantitySold, double totalPrice, AppProduct product, AppProduct appProduct) {
+    public AppSale(int quantitySold, double totalPrice, AppProduct product) {
         this.quantitySold = quantitySold;
         this.totalPrice = totalPrice;
         this.product = product;
-        this.appProduct = appProduct;
     }
 
-    public AppProduct getAppProduct() {
-        return appProduct;
+    public AppProduct getProduct() {
+        return product;
     }
 
-    public void setAppProduct(AppProduct appProduct) {
-        this.appProduct = appProduct;
+    public void setProduct(AppProduct product) {
+        this.product = product;
     }
 
     public Long getId() {

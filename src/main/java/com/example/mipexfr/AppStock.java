@@ -4,13 +4,14 @@ import jakarta.persistence.*;
 @Entity
 public class AppStock {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private int quantity;
     private double price;
 
+
     @OneToOne
+    @MapsId
     @JoinColumn(name = "product_id")
     private AppProduct product;
 
