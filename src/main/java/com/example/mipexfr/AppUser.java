@@ -1,11 +1,11 @@
 package com.example.mipexfr;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
+@Table(name = "app_user")
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,14 +17,11 @@ public class AppUser {
     public AppUser(String username, String password) {
         this.username = username;
         this.password = password;
-        this.isAdmin = false;
     }
 
-    public AppUser(String username, String password, boolean isAdmin) {
-        this.username = username;
-        this.password = password;
-        this.isAdmin = isAdmin;
-    }
+    @OneToMany(mappedBy = "app_user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<AppTable> tables ;
+
     @Override
     public String toString() {
         return String.format("User[id=%d, username=%s, passwd=%s]", id, username, password);
@@ -56,5 +53,13 @@ public class AppUser {
 
     public String getPassword() {
         return password;
+    }
+
+    public List<AppTable> getTables() {
+        return tables;
+    }
+
+    public void setTables(AppTable table) {
+        this.tables.add(table);
     }
 }
