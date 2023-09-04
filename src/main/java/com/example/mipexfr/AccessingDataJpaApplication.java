@@ -1,5 +1,6 @@
 package com.example.mipexfr;
 
+import com.sun.tools.javac.Main;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -8,6 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.management.remote.JMXConnectorFactory;
 import javax.swing.*;
@@ -21,7 +24,7 @@ public class AccessingDataJpaApplication{
         //SpringApplication.run(AccessingDataJpaApplication.class);
         ConfigurableApplicationContext context = new SpringApplicationBuilder(AccessingDataJpaApplication.class).headless(false).run(args);
         SwingUtilities.invokeLater(()->{
-            JFrame MMenu = context.getBean(MainMenu.class);
+            JFrame MMenu = context.getBean(MainMenuUI.class);
             MMenu.setVisible(true);
         });
     }
@@ -65,3 +68,5 @@ public class AccessingDataJpaApplication{
     //}
 
 }
+
+
