@@ -136,16 +136,4 @@ public class UserManagementUI extends JFrame {
         }
         userList.setModel(model);
     }
-
-    //public static void main(String[] args) {
-    //    // Initialize Spring context and get the userRepository bean
-    //    ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
-    //    AppUserRepository userRepository = context.getBean(AppUserRepository.class);
-
-    //    // Create and display the user management UI
-    //    javax.swing.SwingUtilities.invokeLater(() -> {
-    //        UserManagementUI userManagementUI = new UserManagementUI(userRepository);
-    //        userManagementUI.setVisible(true);
-    //    });
-    //}
 }

@@ -42,6 +42,10 @@ public class AppProduct {
     public void setAppSales(List<AppSale> appSales) {
         this.appSales = appSales;
     }
-// Constructors, getters, setters, and other methods
+
+    public Long getId() {
+        return id;
+    }
+    // Constructors, getters, setters, and other methods
 }
 

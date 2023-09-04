@@ -9,17 +9,23 @@ import java.awt.event.ActionListener;
 @SpringBootApplication
 public class MainMenuUI extends JFrame {
     private AppUserRepo userRepository;
+    private AppTableRepo tableRepository;
+    private AppStockRepo stockRepository;
+    private AppProductRepo productRepository;
 
-    public MainMenuUI(AppUserRepo userRepository){
+    public MainMenuUI(AppUserRepo userRepository,AppTableRepo tableRepository, AppProductRepo productRepository, AppStockRepo stockRepository){
         this.userRepository = userRepository;
+        this.tableRepository = tableRepository;
+        this.productRepository = productRepository;
+        this.stockRepository = stockRepository;
 
         setTitle("Main Menu");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(3, 1));
 
         JButton userManagementButton = new JButton("User Management");
-        JButton productManagementButton = new JButton("Product Management");
-        JButton otherFeatureButton = new JButton("Other Feature");
+        JButton productManagementButton = new JButton("Stock Management");
+        JButton otherFeatureButton = new JButton("Table Management");
 
         userManagementButton.addActionListener(new ActionListener() {
             @Override
@@ -28,17 +34,17 @@ public class MainMenuUI extends JFrame {
             }
         });
 
-       // productManagementButton.addActionListener(new ActionListener() {
-       //     @Override
-       //     public void actionPerformed(ActionEvent e) {
-       //         openProductManagementPage();
-       //     }
-       // });
+        productManagementButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openProductManagementPage();
+            }
+        });
 
         otherFeatureButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                openOtherFeaturePage();
+                openTableManagementPage();
             }
         });
 
@@ -56,27 +62,15 @@ public class MainMenuUI extends JFrame {
         userManagementUI.setVisible(true);
     }
 
-    //private void openProductManagementPage() {
-    //    // Create and display the Product Management page with the productRepository
-    //    ProductManagementUI productManagementUI = new ProductManagementUI(productRepository);
-    //    productManagementUI.setVisible(true);
-    //}
-
-    private void openOtherFeaturePage() {
-        // Create and display the Other Feature page
-        // You can pass any other necessary repositories or data here
+    private void openProductManagementPage() {
+        // Create and display the Product Management page with the productRepository
+        StockManagementUI productManagementUI = new StockManagementUI(stockRepository,productRepository);
+        productManagementUI.setVisible(true);
     }
 
-    //public static void main(String[] args) {
-    //    // Initialize Spring context and get the repositories
-    //    ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
-    //    AppUserRepository userRepository = context.getBean(AppUserRepository.class);
-    //    ProductRepository productRepository = context.getBean(ProductRepository.class);
+    private void openTableManagementPage() {
+        TableManagementUI tabMan = new TableManagementUI(tableRepository,userRepository);
+        tabMan.setVisible(true);
 
-    //    // Create and display the main menu with repositories
-    //    javax.swing.SwingUtilities.invokeLater(() -> {
-    //        MainMenuUI mainMenuUI = new MainMenuUI(userRepository, productRepository);
-    //        mainMenuUI.setVisible(true);
-    //    });
-    //}
+    }
 }

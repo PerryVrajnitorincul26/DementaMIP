@@ -14,7 +14,7 @@ public class AppTable {
 
     private int customers;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn (name="app_user", referencedColumnName="id",nullable=false)
     private AppUser app_user;
 
@@ -51,5 +51,23 @@ public class AppTable {
     public void setCustomers(int customers) {
         this.customers = customers;
 
+    }
+
+    public AppUser getApp_user() {
+        return app_user;
+    }
+
+    public void setApp_user(AppUser app_user) {
+        this.app_user = app_user;
+    }
+
+    @Override
+    public String toString() {
+        return "AppTable{" +
+                "tableId=" + tableId +
+                ", seats=" + seats +
+                ", customers=" + customers +
+                ", app_user=" + app_user +
+                '}';
     }
 }

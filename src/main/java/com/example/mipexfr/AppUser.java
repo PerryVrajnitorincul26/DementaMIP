@@ -30,6 +30,9 @@ public class AppUser {
 
     @Override
     public String toString() {
+        if(this == null){
+            return "NULL";
+        }
         return String.format("User[id=%d, username=%s, passwd=%s]", id, username, password);
     }
 
